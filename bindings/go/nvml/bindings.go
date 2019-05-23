@@ -58,7 +58,7 @@ func errorString(ret C.nvmlReturn_t) error {
 }
 
 func init_() error {
-	r := C.nvmlInit_dl()
+	r := C.nvmlInit_dlx()
 	if r == C.NVML_ERROR_LIBRARY_NOT_FOUND {
 		return errors.New("could not load NVML library")
 	}
@@ -146,7 +146,7 @@ func WaitForEvent(es EventSet, timeout uint) (Event, error) {
 }
 
 func shutdown() error {
-	return errorString(C.nvmlShutdown_dl())
+	return errorString(C.nvmlShutdown_dlx())
 }
 
 func systemGetCudaDriverVersion() (*uint, *uint, error) {
@@ -194,7 +194,7 @@ func deviceGetHandleByIndex(idx uint) (handle, error) {
 func deviceGetTopologyCommonAncestor(h1, h2 handle) (*uint, error) {
 	var level C.nvmlGpuTopologyLevel_t
 
-	r := C.nvmlDeviceGetTopologyCommonAncestor_dl(h1.dev, h2.dev, &level)
+	r := C.nvmlDeviceGetTopologyCommonAncestor_dlx(h1.dev, h2.dev, &level)
 	if r == C.NVML_ERROR_FUNCTION_NOT_FOUND || r == C.NVML_ERROR_NOT_SUPPORTED {
 		return nil, nil
 	}

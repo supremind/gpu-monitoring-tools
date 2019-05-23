@@ -5,7 +5,7 @@
 
 #include "nvml.h"
 
-#define NVML_DL(x) x##_dl
+#define NVML_DL(x) x##_dlx
 
 extern nvmlReturn_t NVML_DL(nvmlInit)(void);
 extern nvmlReturn_t NVML_DL(nvmlShutdown)(void);
